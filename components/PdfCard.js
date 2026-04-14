@@ -2,7 +2,7 @@
 
 export default function PdfCard({ pdf }) {
   return (
-    <div className="group relative flex flex-col rounded-2xl bg-white p-5 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 border border-slate-100" style={{ fontFamily: '"DM Sans", sans-serif' }}>
+    <div className="group relative flex flex-col rounded-2xl bg-white p-5 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 border border-slate-100">
       <div className="flex items-start justify-between">
         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-500 shadow-inner group-hover:bg-blue-600 group-hover:text-white transition-colors">
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

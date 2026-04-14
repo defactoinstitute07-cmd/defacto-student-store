@@ -45,3 +45,12 @@
 .animate-triangleMove {
   animation: triangleMove 2.5s linear infinite;
 }
+
+/* Custom Scrollbar Utilities */
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+.hide-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
