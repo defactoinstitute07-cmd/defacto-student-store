@@ -229,13 +229,16 @@ export default function StoreContent({ apks, pdfs }) {
             </div>
 
             {filteredPdfs?.length > 0 ? (
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-6">
-                {filteredPdfs.map((pdf) => (
-                  <div key={pdf.id} className="transition-transform duration-300 hover:-translate-y-1">
-                    <PdfCard pdf={pdf} />
-                  </div>
-                ))}
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+  {filteredPdfs.map((pdf) => (
+    <div
+      key={pdf.id}
+      className="transition-transform duration-300 hover:-translate-y-1"
+    >
+      <PdfCard pdf={pdf} />
+    </div>
+  ))}
+</div>
             ) : (
               /* Clean App Store Empty State */
               <div className="mt-16 flex flex-col items-center justify-center rounded-3xl bg-white py-20 shadow-sm ring-1 ring-slate-900/5 text-center px-4">
