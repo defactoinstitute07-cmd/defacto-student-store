@@ -229,16 +229,16 @@ export default function StoreContent({ apks, pdfs }) {
             </div>
 
             {filteredPdfs?.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
-  {filteredPdfs.map((pdf) => (
-    <div
-      key={pdf.id}
-      className="transition-transform duration-300 hover:-translate-y-1"
-    >
-      <PdfCard pdf={pdf} />
-    </div>
-  ))}
-</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+                {filteredPdfs.map((pdf) => (
+                  <div
+                    key={pdf.id}
+                    className="transition-transform duration-300 hover:-translate-y-1"
+                  >
+                    <PdfCard pdf={pdf} />
+                  </div>
+                ))}
+              </div>
             ) : (
               /* Clean App Store Empty State */
               <div className="mt-16 flex flex-col items-center justify-center rounded-3xl bg-white py-20 shadow-sm ring-1 ring-slate-900/5 text-center px-4">
@@ -308,9 +308,11 @@ export default function StoreContent({ apks, pdfs }) {
                       Expert Leadership
                     </h3>
                     <div className="flex items-start gap-4 mb-8">
-                      <div className="h-14 w-14 shrink-0 rounded-2xl bg-indigo-600 flex items-center justify-center text-white text-xl font-bold">
-                        GN
-                      </div>
+                      <img
+                        src="https://res.cloudinary.com/dmswb6fya/image/upload/v1776839747/faculty/oad4u8y3jbb8hfcy5594.png"
+                        alt="GN Logo"
+                        className="h-14 w-14 shrink-0 rounded-2xl object-cover"
+                      />
                       <div>
                         <h4 className="font-bold text-slate-900">Mr. Gopal Negi</h4>
                         <p className="text-sm text-slate-500">Founder & Academic Head</p>

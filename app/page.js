@@ -9,7 +9,8 @@ const siteUrl = getSiteUrl();
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Defacto Institute Student Store | Materials & Modules",
+  name: "student-store defacto | Defacto Institute Student Store",
+  description: "The official student-store defacto. Get study materials, class notes, and the Defacto ERP app module.",
   url: siteUrl,
 };
 
@@ -41,6 +42,7 @@ export default async function HomePage() {
       />
 
       <main className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-yellow-50 text-slate-900">
+        <h1 className="sr-only">Student-Store Defacto - Materials & Modules</h1>
 
         <header className="sticky top-0 z-50 bg-[#0B1220] border-b border-white/10 px-4 py-3">
 
@@ -61,9 +63,9 @@ export default async function HomePage() {
 
               {/* Text */}
               <div className="leading-tight">
-                <h1 className="text-yellow-400 font-bold text-lg">
+                <span className="text-yellow-400 font-bold text-lg block">
                   Defacto
-                </h1>
+                </span>
                 <p className="text-xs text-gray-400">
                   Institute | BHANIYAWALA
                 </p>

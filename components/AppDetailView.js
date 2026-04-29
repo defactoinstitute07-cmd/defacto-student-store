@@ -216,7 +216,7 @@ export default function AppDetailView({ apk }) {
               </h3>
 
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
-                Experience a powerful and smart ERP system designed to transform the way students, parents, and institutes connect.
+                Welcome to the official <span className="font-bold text-slate-900">student-store defacto</span>. Experience a powerful and smart ERP system designed to transform the way students, parents, and institutes connect.
 
                 With <span className="font-bold text-yellow-600">Defacto Institute</span>’s advanced digital platform, you can easily track attendance, manage fees, access study materials, check results,
                 and stay updated with real-time notifications — all in one place.
