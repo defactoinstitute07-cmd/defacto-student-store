@@ -180,7 +180,7 @@ export default function StoreContent({ apks, pdfs }) {
                         <div className="mt-1 flex items-center gap-1.5 text-[11px] font-medium text-slate-400">
 
                           <span>•</span>
-                          <span>{apk.downloadCount || "100"} Downloads</span>
+                          <span>{apk.downloadCount || "0"} Downloads</span>
                         </div>
                       </div>
                     </div>
