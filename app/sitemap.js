@@ -1,9 +1,17 @@
+import { getApks } from "../lib/apks";
 import { getSiteUrl } from "../lib/site";
 
-export default function sitemap() {
+export default async function sitemap() {
   const siteUrl = getSiteUrl();
+  let apks = [];
 
-  return [
+  try {
+    apks = await getApks();
+  } catch (error) {
+    apks = [];
+  }
+
+  const staticRoutes = [
     {
       url: siteUrl,
       lastModified: new Date(),
@@ -11,4 +19,13 @@ export default function sitemap() {
       priority: 1,
     },
   ];
+
+  const appRoutes = apks.map((apk) => ({
+    url: `${siteUrl}/app/${apk.id}`,
+    lastModified: apk.createdAt ? new Date(apk.createdAt) : new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...appRoutes];
 }

@@ -14,6 +14,23 @@ export default function DownloadControl({
   const [downloadCount, setDownloadCount] = useState(initialDownloadCount);
   const [isLoading, setIsLoading] = useState(false);
 
+  function startDownload(downloadUrl) {
+    const url = new URL(downloadUrl, window.location.href);
+    const link = document.createElement("a");
+
+    link.href = url.href;
+    if (url.origin === window.location.origin) {
+      link.download = url.pathname.split("/").pop() || "app.apk";
+    } else {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    }
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
   async function handleDownload() {
     if (isLoading) {
       return;
@@ -40,7 +57,7 @@ export default function DownloadControl({
       }
 
       if (data.downloadUrl) {
-        window.open(data.downloadUrl, "_blank", "noopener,noreferrer");
+        startDownload(data.downloadUrl);
       }
 
       startTransition(() => {

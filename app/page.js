@@ -2,19 +2,92 @@ import Script from "next/script";
 import StoreContent from "../components/StoreContent";
 import { getApks } from "../lib/apks";
 import { getPdfs } from "../lib/pdfs";
-import { getSiteUrl } from "../lib/site";
+import { getSiteUrl, siteConfig } from "../lib/site";
 
 const siteUrl = getSiteUrl();
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: "student-store defacto | Defacto Institute Student Store",
-  description: "The official student-store defacto. Get study materials, class notes, and the Defacto ERP app module.",
-  url: siteUrl,
+export const metadata = {
+  title: {
+    absolute: "Defacto Institute Student Store | Apps, Notes & ERP",
+  },
+  description:
+    "Visit the official Defacto Institute Student Store to download student ERP apps, study tools, class notes, PDFs, and academic resources for Defacto students.",
+  keywords: [
+    ...siteConfig.keywords,
+    "Defacto Institute Student Store download",
+    "Defacto student app download",
+    "Defacto Institute Bhaniyawala",
+    "Defacto Institute academic resources",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Defacto Institute Student Store",
+    description:
+      "Download Defacto Institute student apps, ERP modules, study notes, and academic resources from the official Student Store.",
+    url: siteUrl,
+    type: "website",
+  },
 };
 
 export const dynamic = "force-dynamic";
+
+function createStructuredData(apks, pdfs) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${siteUrl}/#organization`,
+        name: "Defacto Institute",
+        url: "https://www.defactoinstitute.in/",
+        logo: `${siteUrl}${siteConfig.ogImage}`,
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        name: "Defacto Institute Student Store",
+        alternateName: ["Student Store", "Defacto Student Store"],
+        url: siteUrl,
+        publisher: {
+          "@id": `${siteUrl}/#organization`,
+        },
+        inLanguage: "en-IN",
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${siteUrl}/#student-store`,
+        name: "Defacto Institute Student Store",
+        description:
+          "Official Student Store for Defacto Institute apps, ERP modules, class notes, PDFs, and study materials.",
+        url: siteUrl,
+        isPartOf: {
+          "@id": `${siteUrl}/#website`,
+        },
+        about: {
+          "@id": `${siteUrl}/#organization`,
+        },
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: [
+            ...(apks || []).map((apk, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              url: `${siteUrl}/app/${apk.id}`,
+              name: apk.appName,
+            })),
+            ...(pdfs || []).slice(0, 10).map((pdf, index) => ({
+              "@type": "ListItem",
+              position: (apks?.length || 0) + index + 1,
+              name: pdf.name,
+            })),
+          ],
+        },
+      },
+    ],
+  };
+}
 
 async function loadStoreData() {
   try {
@@ -32,6 +105,7 @@ async function loadStoreData() {
 
 export default async function HomePage() {
   const { apks, pdfs, errorMessage } = await loadStoreData();
+  const structuredData = createStructuredData(apks, pdfs);
 
   return (
     <>
@@ -42,7 +116,9 @@ export default async function HomePage() {
       />
 
       <main className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-yellow-50 text-slate-900">
-        <h1 className="sr-only">Student-Store Defacto - Materials & Modules</h1>
+        <h1 className="sr-only">
+          Defacto Institute Student Store - Apps, Notes, ERP Modules, and Study Materials
+        </h1>
 
         <header className="sticky top-0 z-50 bg-[#0B1220] border-b border-white/10 px-4 py-3">
 
